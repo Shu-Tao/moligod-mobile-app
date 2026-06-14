@@ -5,8 +5,8 @@
   "bundledWebRuntime": false,
   "server": {
     "url": "https://moligod.com/",
-    "cleartext": true,
-    "allowNavigation": ["moligod.com"]
+    "cleartext": false,
+    "allowNavigation": ["moligod.com", "*.moligod.com"]
   },
   "android": {
     "buildOptions": {
