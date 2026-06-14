@@ -33,6 +33,9 @@ desktop.ini
 # Android 本地
 local.properties
 *.local
+keystore.properties
+*.keystore
+*.jks
 
 # iOS 本地 (由 npx cap sync 生成的)
 android/.gradle/

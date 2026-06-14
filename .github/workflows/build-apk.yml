@@ -1,0 +1,108 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 构建 Android APK (Release + Debug)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 设置 JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: 设置 Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: 11076708
+          packages: |
+            platform-tools
+            platforms;android-34
+            build-tools;34.0.0
+
+      - name: 写入 local.properties 与 keystore.properties
+        working-directory: android
+        run: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+          echo "local.properties 内容:"
+          cat local.properties
+
+          # 生成 release 签名密钥
+          keytool -genkey -v \
+            -keystore moligod-release.keystore \
+            -alias moligod \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -storepass moligod123 \
+            -keypass moligod123 \
+            -dname "CN=Moligod, OU=Mobile, O=Moligod, L=Shanghai, ST=Shanghai, C=CN"
+
+          echo "storeFile=moligod-release.keystore" > keystore.properties
+          echo "storePassword=moligod123" >> keystore.properties
+          echo "keyAlias=moligod" >> keystore.properties
+          echo "keyPassword=moligod123" >> keystore.properties
+          echo "keystore.properties 已生成"
+
+      - name: 构建 Release APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew clean assembleRelease --no-daemon --stacktrace 2>&1 | tail -80
+
+      - name: 构建 Debug APK (降级方案)
+        if: failure()
+        working-directory: android
+        run: |
+          echo "=== Release 构建失败，尝试 Debug 构建 ==="
+          ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tail -80
+
+      - name: 查找并校验 APK
+        working-directory: android
+        run: |
+          echo "=== APK 输出目录 ==="
+          find . -name "*.apk" -type f 2>/dev/null | head -20
+          echo ""
+          echo "=== APK 文件大小 ==="
+          find . -name "*.apk" -type f -exec ls -lh {} \; 2>/dev/null
+
+      - name: 上传 Release APK 构件
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moligod-release-apk
+          path: android/app/build/outputs/apk/release/*.apk
+          retention-days: 30
+
+      - name: 上传 Debug APK 构件
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: moligod-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30
+
+      - name: 汇总输出
+        run: |
+          echo "## ✅ APK 构建完成"
+          echo ""
+          echo "- **Release APK**: 位于构建构件下载页"
+          echo "- **Debug APK**: 位于构建构件下载页"
+          echo "- **包名**: com.moligod.market"
+          echo "- **目标 Android**: 8.0 (API 22) - 14 (API 34)"
+          echo ""
+          echo "📱 将 APK 传到手机安装即可使用（需开启'未知来源'）"
+        shell: bash

@@ -1,10 +1,12 @@
-# Moligod 应用 - 本地 Gradle 配置示例
-# 将此文件复制为 local.properties 并填入你本地的 SDK 路径
+# Android SDK 路径配置
+# 本地开发: 根据你的实际安装路径修改
+# GitHub Actions CI: 自动配置, 无需修改
+
 # Windows 示例:
 # sdk.dir=C\:\\Users\\YourName\\AppData\\Local\\Android\\Sdk
+
 # macOS 示例:
 # sdk.dir=/Users/yourname/Library/Android/sdk
-# Linux 示例:
-# sdk.dir=/home/yourname/Android/Sdk
 
-sdk.dir=YOUR_ANDROID_SDK_PATH_HERE
+# Linux / CI 示例:
+# sdk.dir=/usr/local/lib/android/sdk
