@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#0a0e17" />
+    <meta name="description" content="Moligod - 三角洲子弹市场手机端" />
+    <title>Moligod</title>
+    <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <div id="splash" class="splash-screen">
+        <div class="splash-content">
+          <div class="logo-ring">
+            <div class="logo-inner">
+              <span class="logo-text">M</span>
+            </div>
+          </div>
+          <h1 class="app-title">Moligod</h1>
+          <p class="app-subtitle">三角洲子弹市场</p>
+          <div class="loading-bar">
+            <div class="loading-progress"></div>
+          </div>
+          <p class="status-text" id="status-text">正在初始化...</p>
+        </div>
+      </div>
+
+      <iframe
+        id="webview"
+        class="webview"
+        src="about:blank"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; geolocation; camera; microphone"
+        allowfullscreen
+        frameborder="0"
+        webkit-playsinline
+        playsinline
+      ></iframe>
+
+      <div id="error-screen" class="error-screen hidden">
+        <div class="error-content">
+          <div class="error-icon">⚠️</div>
+          <h2>网络连接异常</h2>
+          <p>无法连接到 Moligod 服务器</p>
+          <p class="error-detail" id="error-detail"></p>
+          <button id="retry-btn" class="retry-button">
+            重新加载
+          </button>
+          <p class="tip">请检查网络连接后重试</p>
+        </div>
+      </div>
+
+      <div id="offline-indicator" class="offline-indicator hidden">
+        <span>📡 网络已断开，正在尝试重连...</span>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

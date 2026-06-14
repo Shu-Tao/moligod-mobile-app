@@ -1,0 +1,84 @@
+# 依赖
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 构建输出
+dist/
+build/
+out/
+*.exe
+*.apk
+*.aab
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.iml
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# Android 本地
+local.properties
+*.local
+
+# iOS 本地 (由 npx cap sync 生成的)
+android/.gradle/
+android/build/
+android/app/build/
+android/**/build/
+android/capacitor-cordova-android-plugins/
+android/.settings
+android/app/build/
+android/app/build/
+android/**/.idea
+android/**/build/
+android/**/*.iml
+android/captures/
+android/navigation/
+android/**/local.properties
+android/**/.settings
+android/app/src/main/assets/public/
+
+# iOS 构建产物
+ios/App/App.xcworkspace/xcuserdata/
+ios/App/App.xcodeproj/xcuserdata/
+ios/build/
+ios/Pods/
+ios/DerivedData/
+ios/**/.DS_Store
+ios/App/App/build/
+ios/**/*.xcworkspace/xcshareddata/
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+*.bak
+
+# 浏览器缓存
+.cache/
+.parcel-cache/
+
+# web 缓存
+web/.DS_Store
+
+# test
+coverage/
+.nyc_output/
+
+# VS Code
+.vscode/
+.history/

@@ -1,0 +1,54 @@
+{
+  "appId": "com.moligod.market",
+  "appName": "Moligod",
+  "webDir": "web",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "https://moligod.com/",
+    "cleartext": true,
+    "allowNavigation": ["moligod.com"]
+  },
+  "android": {
+    "buildOptions": {
+      "keystorePath": "",
+      "keystoreAlias": "",
+      "keystoreAliasPassword": "",
+      "keystorePassword": "",
+      "signingType": "none"
+    },
+    "path": "android"
+  },
+  "ios": {
+    "scheme": "Moligod",
+    "path": "ios"
+  },
+  "plugins": {
+    "App": {
+      "android": {
+        "overrideHardwareBackButton": false
+      }
+    },
+    "Keyboard": {
+      "resizeOnFullScreen": true
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "launchAutoHide": true,
+      "backgroundColor": "#0a0e17",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "layoutName": "launch_screen",
+      "useLastShownRatio": false,
+      "splashStyle": "splashscreen",
+      "dialogStyle": ""
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#0a0e17",
+      "overlay": true
+    }
+  }
+}

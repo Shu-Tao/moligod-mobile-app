@@ -1,0 +1,309 @@
+/* ============ 全局基础样式 ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0e17;
+  color: #ffffff;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ============ 应用外壳 ============ */
+.app-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 50%, #0a0e17 100%);
+}
+
+/* ============ WebView ============ */
+.webview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0a0e17;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.webview.loaded {
+  opacity: 1;
+}
+
+/* ============ 启动画面 ============ */
+.splash-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0e17 0%, #1a1f2e 50%, #0a0e17 100%);
+  z-index: 100;
+  transition: opacity 0.5s ease;
+}
+
+.splash-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.logo-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 60px rgba(0, 212, 255, 0.4),
+    0 0 30px rgba(0, 255, 136, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+  margin-bottom: 24px;
+}
+
+.logo-inner {
+  width: 100%;
+  height: 100%;
+  background: #0a0e17;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  font-family: 'Orbitron', monospace, sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-title {
+  font-family: 'Orbitron', monospace, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.app-subtitle {
+  font-size: 14px;
+  color: #8b98a5;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.loading-progress {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #00ff88);
+  border-radius: 2px;
+  animation: loading-move 1.5s ease-in-out infinite;
+}
+
+.status-text {
+  font-size: 12px;
+  color: #6b7685;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* ============ 错误页面 ============ */
+.error-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 14, 23, 0.98);
+  z-index: 90;
+  padding: 24px;
+}
+
+.error-screen.hidden {
+  display: none;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 320px;
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.error-content h2 {
+  font-size: 20px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.error-content p {
+  font-size: 14px;
+  color: #8b98a5;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.error-detail {
+  font-size: 12px;
+  color: #ff6b6b;
+  font-family: monospace;
+  margin-bottom: 24px;
+  word-break: break-all;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+  color: #0a0e17;
+  border: none;
+  padding: 14px 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+  margin-bottom: 16px;
+}
+
+.retry-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 10px rgba(0, 212, 255, 0.2);
+}
+
+.tip {
+  font-size: 12px;
+  color: #6b7685;
+}
+
+/* ============ 离线指示器 ============ */
+.offline-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 107, 107, 0.95);
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 12px;
+  text-align: center;
+  z-index: 200;
+  animation: slide-down 0.3s ease;
+}
+
+.offline-indicator.hidden {
+  display: none;
+}
+
+/* ============ 动画 ============ */
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 60px rgba(0, 212, 255, 0.4),
+      0 0 30px rgba(0, 255, 136, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 80px rgba(0, 212, 255, 0.6),
+      0 0 50px rgba(0, 255, 136, 0.3);
+  }
+}
+
+@keyframes loading-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ============ 刘海屏安全区 ============ */
+@supports (padding: max(0px)) {
+  .app-shell {
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* ============ 响应式 ============ */
+@media (min-width: 768px) {
+  .logo-ring {
+    width: 150px;
+    height: 150px;
+  }
+  .logo-text {
+    font-size: 70px;
+  }
+  .app-title {
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    namespace "com.moligod.market"
+    compileSdk rootProject.compileSdkVersion
+    defaultConfig {
+        applicationId "com.moligod.market"
+        minSdk rootProject.minSdkVersion
+        targetSdk rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables { useSupportLibrary true }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    packaging {
+        resources { excludes += '/META-INF/{AL2.0,LGPL2.1}' }
+    }
+    packagingOptions {
+        jniLibs { useLegacyPackaging = true }
+    }
+}
+
+repositories {
+    flatDir { dirs 'libs' }
+}
+
+def capacitorAndroidDir = file("../node_modules/@capacitor/android/capacitor")
+if (!capacitorAndroidDir.exists()) {
+    capacitorAndroidDir = file("../../node_modules/@capacitor/android/capacitor")
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$rootProject.androidxAppCompatVersion"
+    implementation "androidx.core:core:$rootProject.androidxCoreVersion"
+    implementation "androidx.core:core-splashscreen:$rootProject.coreSplashScreenVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$rootProject.androidxCoordinatorLayoutVersion"
+    implementation "androidx.webkit:webkit:$rootProject.androidxWebKitVersion"
+    implementation "com.google.android.material:material:$rootProject.googleMaterialVersion"
+    implementation "androidx.activity:activity:$rootProject.androidxActivityVersion"
+    implementation "androidx.fragment:fragment:$rootProject.androidxFragmentVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.androidxEspressoCoreVersion"
+
+    // Capacitor plugins
+    implementation project(':capacitor-app')
+    implementation project(':capacitor-device')
+    implementation project(':capacitor-keyboard')
+    implementation project(':capacitor-status-bar')
+    implementation project(':capacitor-browser')
+    implementation project(':capacitor-haptics')
+}
+
+def getLocalProperty(String name, String defaultVal = null) {
+    def properties = new Properties()
+    def file = file("local.properties")
+    if (file.exists()) {
+        file.withInputStream { properties.load(it) }
+    }
+    return properties.getProperty(name, defaultVal)
+}

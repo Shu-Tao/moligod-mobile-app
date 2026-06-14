@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_splash</item>
+        <item name="android:statusBarColor">#0a0e17</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@drawable/launch_splash</item>
+        <item name="colorPrimary">#0a0e17</item>
+        <item name="colorPrimaryDark">#0a0e17</item>
+        <item name="colorAccent">#00d4ff</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0a0e17</item>
+        <item name="colorPrimaryDark">#0a0e17</item>
+        <item name="colorAccent">#00d4ff</item>
+        <item name="android:statusBarColor">#0a0e17</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

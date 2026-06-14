@@ -1,0 +1,37 @@
+{
+  "name": "moligod-mobile-app",
+  "version": "1.0.0",
+  "description": "Moligod 移动端应用 - 三角洲子弹市场 (Android/iOS)",
+  "private": true,
+  "author": "Moligod Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx cap serve",
+    "build": "echo 'Web assets are static, no build required.'",
+    "init:cap": "npx cap init",
+    "add:android": "npx cap add android",
+    "add:ios": "npx cap add ios",
+    "sync": "npx cap sync",
+    "open:android": "npx cap open android",
+    "open:ios": "npx cap open ios",
+    "copy": "npx cap copy",
+    "update": "npx cap update",
+    "build:android": "npx cap build android",
+    "serve:web": "cd web && npx serve -l 3000"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "5.7.4",
+    "@capacitor/core": "5.7.4"
+  },
+  "dependencies": {
+    "@capacitor/android": "5.7.4",
+    "@capacitor/app": "5.0.7",
+    "@capacitor/browser": "5.2.1",
+    "@capacitor/core": "5.7.4",
+    "@capacitor/device": "5.0.7",
+    "@capacitor/haptics": "5.0.7",
+    "@capacitor/ios": "5.7.4",
+    "@capacitor/keyboard": "5.0.8",
+    "@capacitor/status-bar": "5.0.7"
+  }
+}
